@@ -147,6 +147,8 @@ export interface TransactionCustomer {
   createdAt?: string;
 }
 
+export type PaymentProvider = 'DEMO' | 'RAZORPAY';
+
 export interface Transaction {
   id: string;
   amount: number;
@@ -155,12 +157,39 @@ export interface Transaction {
   description?: string;
   status: TransactionStatus;
   failureReason?: FailureReason | null;
+  provider?: PaymentProvider;
+  razorpayOrderId?: string | null;
+  razorpayPaymentId?: string | null;
+  paymentVerifiedAt?: string | null;
   recoveredAmount?: number | null;
   recoveredAt?: string | null;
   recoveryAttemptId?: string | null;
   createdAt: string;
-  updatedAt?: string;
+  updatedAt: string;
   customer?: TransactionCustomer | null;
+}
+
+export interface RazorpayPublicConfig {
+  isConfigured: boolean;
+  keyId: string | null;
+  mode: 'TEST';
+}
+
+export interface RazorpayOrderData {
+  orderId: string;
+  amount: number;
+  amountInPaise: number;
+  currency: string;
+  keyId: string;
+  businessName: string;
+  transactionId: string;
+}
+
+export interface RazorpayVerificationPayload {
+  transactionId: string;
+  razorpayOrderId: string;
+  razorpayPaymentId: string;
+  razorpaySignature: string;
 }
 
 export interface DecisionFactors {

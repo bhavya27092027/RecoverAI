@@ -21,6 +21,8 @@ export type TransactionPaymentMethod =
   | 'Debit Card'
   | 'Net Banking';
 
+export type PaymentProvider = 'DEMO' | 'RAZORPAY';
+
 export interface ITransaction extends Document {
   _id: mongoose.Types.ObjectId;
   merchantId: mongoose.Types.ObjectId;
@@ -31,6 +33,12 @@ export interface ITransaction extends Document {
   description?: string;
   status: TransactionStatus;
   failureReason?: FailureReason | null;
+  provider: PaymentProvider;
+  razorpayOrderId?: string | null;
+  razorpayPaymentId?: string | null;
+  razorpaySignature?: string | null;
+  paymentVerifiedAt?: Date | null;
+  paymentGatewayDetails?: Record<string, any> | null;
   recoveredAt?: Date | null;
   recoveredAmount?: number | null;
   recoveryAttemptId?: mongoose.Types.ObjectId | null;
@@ -102,6 +110,39 @@ const TransactionSchema = new Schema<ITransaction>(
       },
       default: null,
     },
+    provider: {
+      type: String,
+      enum: ['DEMO', 'RAZORPAY'],
+      default: 'DEMO',
+      index: true,
+    },
+    razorpayOrderId: {
+      type: String,
+      trim: true,
+      default: null,
+      sparse: true,
+      index: true,
+    },
+    razorpayPaymentId: {
+      type: String,
+      trim: true,
+      default: null,
+      sparse: true,
+      index: true,
+    },
+    razorpaySignature: {
+      type: String,
+      trim: true,
+      default: null,
+    },
+    paymentVerifiedAt: {
+      type: Date,
+      default: null,
+    },
+    paymentGatewayDetails: {
+      type: Schema.Types.Mixed,
+      default: null,
+    },
     recoveredAt: {
       type: Date,
       default: null,
@@ -134,6 +175,7 @@ TransactionSchema.index({ merchantId: 1, status: 1 });
 TransactionSchema.index({ merchantId: 1, failureReason: 1 });
 TransactionSchema.index({ merchantId: 1, paymentMethod: 1 });
 TransactionSchema.index({ merchantId: 1, status: 1, createdAt: -1 });
+TransactionSchema.index({ merchantId: 1, razorpayOrderId: 1 });
 
 export const Transaction: Model<ITransaction> =
   mongoose.models.Transaction ||

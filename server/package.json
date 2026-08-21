@@ -13,8 +13,9 @@
     "test:phase3": "ts-node --transpile-only src/tests/phase3.test.ts",
     "test:phase4": "ts-node --transpile-only src/tests/phase4.test.ts",
     "test:phase5": "ts-node --transpile-only src/tests/phase5.test.ts",
+    "test:phase6": "ts-node --transpile-only src/tests/phase6.test.ts",
     "test:audit": "ts-node --transpile-only src/tests/final_qa_audit.ts",
-    "test:all": "npx tsx src/tests/auth.test.ts && npx tsx src/tests/phase2.test.ts && npx tsx src/tests/phase3.test.ts && npx tsx src/tests/phase4.test.ts && npx tsx src/tests/phase5.test.ts",
+    "test:all": "npx tsx src/tests/auth.test.ts && npx tsx src/tests/phase2.test.ts && npx tsx src/tests/phase3.test.ts && npx tsx src/tests/phase4.test.ts && npx tsx src/tests/phase5.test.ts && npx tsx src/tests/phase6.test.ts",
     "seed:demo": "ts-node --transpile-only src/scripts/seedDemoData.ts",
     "db:local": "ts-node --transpile-only src/scripts/startLocalDb.ts"
   },
@@ -27,6 +28,7 @@
     "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
+    "razorpay": "^2.9.8",
     "zod": "^3.24.1"
   },
   "devDependencies": {

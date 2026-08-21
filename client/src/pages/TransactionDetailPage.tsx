@@ -10,6 +10,7 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { ProcessPaymentModal } from '../components/transactions/ProcessPaymentModal';
+import { RazorpayCheckoutModal } from '../components/payments/RazorpayCheckoutModal';
 import { RecoveryScoreBadge } from '../components/recovery/RecoveryScoreBadge';
 import { RecommendedActionBadge } from '../components/recovery/RecommendedActionBadge';
 import { DecisionFactorsCard } from '../components/recovery/DecisionFactorsCard';
@@ -26,6 +27,8 @@ import {
   FileText,
   Sparkles,
   BrainCircuit,
+  CreditCard,
+  ShieldCheck,
 } from 'lucide-react';
 
 export const TransactionDetailPage: React.FC = () => {
@@ -37,6 +40,7 @@ export const TransactionDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isProcessModalOpen, setIsProcessModalOpen] = useState(false);
+  const [isRazorpayModalOpen, setIsRazorpayModalOpen] = useState(false);
 
   // AI Analysis Execution Animation State
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -187,26 +191,48 @@ export const TransactionDetailPage: React.FC = () => {
           </Button>
 
           {transaction.status === 'CREATED' && (
-            <Button
-              variant="accent"
-              size="sm"
-              onClick={() => setIsProcessModalOpen(true)}
-              leftIcon={<Play className="w-4 h-4 fill-current" />}
-              className="shadow-glow-accent"
-            >
-              Process Payment
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10"
+                onClick={() => setIsRazorpayModalOpen(true)}
+                leftIcon={<CreditCard className="w-4 h-4" />}
+              >
+                Pay (Razorpay Test)
+              </Button>
+              <Button
+                variant="accent"
+                size="sm"
+                onClick={() => setIsProcessModalOpen(true)}
+                leftIcon={<Play className="w-4 h-4 fill-current" />}
+                className="shadow-glow-accent"
+              >
+                Simulate Payment
+              </Button>
+            </div>
           )}
 
           {transaction.status === 'FAILED' && (
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => setIsProcessModalOpen(true)}
-              leftIcon={<RefreshCw className="w-3.5 h-3.5" />}
-            >
-              Re-simulate Payment
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10"
+                onClick={() => setIsRazorpayModalOpen(true)}
+                leftIcon={<CreditCard className="w-4 h-4" />}
+              >
+                Pay (Razorpay Test)
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setIsProcessModalOpen(true)}
+                leftIcon={<RefreshCw className="w-3.5 h-3.5" />}
+              >
+                Re-simulate Payment
+              </Button>
+            </div>
           )}
         </div>
       </div>
@@ -220,6 +246,9 @@ export const TransactionDetailPage: React.FC = () => {
                 Transaction Status
               </span>
               {getStatusBadge(transaction.status)}
+              <Badge variant={transaction.provider === 'RAZORPAY' ? 'warning' : 'default'}>
+                {transaction.provider === 'RAZORPAY' ? 'RAZORPAY TEST' : 'DEMO PROVIDER'}
+              </Badge>
             </div>
             <p className="text-4xl font-extrabold font-mono text-white">
               ₹{transaction.amount.toLocaleString()}{' '}
@@ -691,6 +720,55 @@ export const TransactionDetailPage: React.FC = () => {
             </div>
           </div>
         </Card>
+
+        {/* Razorpay Gateway Details Card */}
+        <Card className="bg-surface border-surface-border p-6 space-y-4 lg:col-span-2">
+          <div className="flex items-center justify-between pb-3 border-b border-surface-border/70">
+            <div className="flex items-center gap-2.5">
+              <CreditCard className="w-4 h-4 text-emerald-400" />
+              <h3 className="text-sm font-bold text-white">Payment Gateway Details</h3>
+            </div>
+            <Badge variant={transaction.provider === 'RAZORPAY' ? 'warning' : 'default'}>
+              {transaction.provider === 'RAZORPAY' ? 'RAZORPAY TEST MODE' : 'DEMO PROVIDER'}
+            </Badge>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div className="p-3 bg-surface-muted/40 rounded-xl border border-surface-border space-y-1">
+              <span className="text-slate-400 text-[11px] block">Payment Provider</span>
+              <span className="font-semibold text-white font-mono">
+                {transaction.provider || 'DEMO'}
+              </span>
+            </div>
+
+            <div className="p-3 bg-surface-muted/40 rounded-xl border border-surface-border space-y-1">
+              <span className="text-slate-400 text-[11px] block">Razorpay Order ID</span>
+              <span className="font-semibold text-brand-400 font-mono">
+                {transaction.razorpayOrderId || '—'}
+              </span>
+            </div>
+
+            <div className="p-3 bg-surface-muted/40 rounded-xl border border-surface-border space-y-1">
+              <span className="text-slate-400 text-[11px] block">Razorpay Payment ID</span>
+              <span className="font-semibold text-emerald-400 font-mono">
+                {transaction.razorpayPaymentId || '—'}
+              </span>
+            </div>
+
+            <div className="p-3 bg-surface-muted/40 rounded-xl border border-surface-border space-y-1">
+              <span className="text-slate-400 text-[11px] block">Verification Status</span>
+              <span className="font-semibold text-slate-200">
+                {transaction.paymentVerifiedAt ? (
+                  <span className="text-emerald-400 flex items-center gap-1">
+                    <ShieldCheck className="w-3.5 h-3.5 inline" /> Verified
+                  </span>
+                ) : (
+                  'Unverified'
+                )}
+              </span>
+            </div>
+          </div>
+        </Card>
       </div>
 
       {/* Payment Processing Simulation Modal */}
@@ -699,6 +777,17 @@ export const TransactionDetailPage: React.FC = () => {
         transaction={transaction}
         onClose={() => setIsProcessModalOpen(false)}
         onSuccess={handlePaymentProcessed}
+      />
+
+      {/* Razorpay Test Checkout Modal */}
+      <RazorpayCheckoutModal
+        isOpen={isRazorpayModalOpen}
+        transaction={transaction}
+        onClose={() => setIsRazorpayModalOpen(false)}
+        onSuccess={(updatedTx) => {
+          setTransaction(updatedTx);
+          fetchTransactionAndAnalysis();
+        }}
       />
     </div>
   );

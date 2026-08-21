@@ -7,6 +7,7 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { CreateTransactionModal } from '../components/transactions/CreateTransactionModal';
 import { CreateCustomerModal } from '../components/customers/CreateCustomerModal';
+import { RazorpayCheckoutModal } from '../components/payments/RazorpayCheckoutModal';
 import {
   ArrowLeftRight,
   PlusCircle,
@@ -21,6 +22,7 @@ import {
   ArrowUp,
   ArrowDown,
   Zap,
+  CreditCard,
 } from 'lucide-react';
 
 type SortField = 'date' | 'amount' | 'status';
@@ -48,6 +50,8 @@ export const TransactionsPage: React.FC = () => {
   // Modals State
   const [isCreateTxModalOpen, setIsCreateTxModalOpen] = useState(false);
   const [isCreateCustomerModalOpen, setIsCreateCustomerModalOpen] = useState(false);
+  const [selectedRazorpayTx, setSelectedRazorpayTx] = useState<Transaction | null>(null);
+  const [isRazorpayModalOpen, setIsRazorpayModalOpen] = useState(false);
 
   const fetchTransactions = async (page = currentPage) => {
     try {
@@ -324,6 +328,7 @@ export const TransactionsPage: React.FC = () => {
                   >
                     Amount {renderSortIcon('amount')}
                   </th>
+                  <th className="py-3.5 px-4">Provider</th>
                   <th className="py-3.5 px-4">Payment Rail</th>
                   <th
                     className="py-3.5 px-4 cursor-pointer hover:text-white transition-colors"
@@ -373,6 +378,12 @@ export const TransactionsPage: React.FC = () => {
                       ₹{tx.amount.toLocaleString()}
                     </td>
 
+                    <td className="py-4 px-4">
+                      <Badge variant={tx.provider === 'RAZORPAY' ? 'warning' : 'default'}>
+                        {tx.provider === 'RAZORPAY' ? 'RAZORPAY TEST' : 'DEMO'}
+                      </Badge>
+                    </td>
+
                     <td className="py-4 px-4 text-slate-300">{tx.paymentMethod}</td>
 
                     <td className="py-4 px-4">{getStatusBadge(tx)}</td>
@@ -399,6 +410,20 @@ export const TransactionsPage: React.FC = () => {
 
                     <td className="py-4 px-5 text-right">
                       <div className="flex items-center justify-end gap-2">
+                        {(tx.status === 'CREATED' || tx.status === 'FAILED') && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10"
+                            leftIcon={<CreditCard className="w-3.5 h-3.5" />}
+                            onClick={() => {
+                              setSelectedRazorpayTx(tx);
+                              setIsRazorpayModalOpen(true);
+                            }}
+                          >
+                            Pay (Razorpay)
+                          </Button>
+                        )}
                         {(tx.status === 'FAILED' || tx.status === 'RECOVERED') && (
                           <Link to={`/recovery/${tx.id}`}>
                             <Button
@@ -473,6 +498,16 @@ export const TransactionsPage: React.FC = () => {
         onClose={() => setIsCreateCustomerModalOpen(false)}
         onSuccess={() => {
           setIsCreateTxModalOpen(true);
+        }}
+      />
+
+      {/* Razorpay Test Checkout Modal */}
+      <RazorpayCheckoutModal
+        isOpen={isRazorpayModalOpen}
+        onClose={() => setIsRazorpayModalOpen(false)}
+        transaction={selectedRazorpayTx}
+        onSuccess={() => {
+          fetchTransactions();
         }}
       />
     </div>

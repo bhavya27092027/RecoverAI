@@ -15,6 +15,8 @@ import analyticsRoutes from './routes/analytics.routes';
 import notificationRoutes from './routes/notification.routes';
 import searchRoutes from './routes/search.routes';
 import demoRoutes from './routes/demo.routes';
+import paymentRoutes from './routes/payment.routes';
+import webhookRoutes from './routes/webhook.routes';
 import { notFoundHandler, errorHandler } from './middleware/error.middleware';
 
 dotenv.config();
@@ -36,12 +38,18 @@ app.use(
     origin: CLIENT_URL,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-razorpay-signature', 'x-razorpay-event-id'],
   })
 );
 
-// Body and Cookie Parsers
-app.use(express.json());
+// Body Parsers with Raw Body Capture for Webhook Signature Verification
+app.use(
+  express.json({
+    verify: (req: any, _res, buf) => {
+      req.rawBody = buf;
+    },
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
@@ -69,6 +77,8 @@ app.use('/api/merchant', merchantRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/transactions', transactionRoutes);
+app.use('/api/payments', paymentRoutes);
+app.use('/api/webhooks', webhookRoutes);
 app.use('/api/recovery', recoveryRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/analytics', analyticsRoutes);
