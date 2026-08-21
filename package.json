@@ -1,0 +1,17 @@
+{
+  "name": "recoverai-workspace",
+  "version": "1.0.0",
+  "description": "RecoverAI - Autonomous AI Revenue Recovery Platform",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "db:local": "cd server && npm run db:local",
+    "build": "cd server && npm run build && cd ../client && npm run build",
+    "test": "cd server && npm test",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
