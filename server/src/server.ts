@@ -32,13 +32,42 @@ app.use(
   })
 );
 
-// CORS Configuration for secure cookies
+// Determine allowed CORS origins
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://localhost:5000',
+  'https://recoverai-revenue.netlify.app',
+  ...(CLIENT_URL
+    ? CLIENT_URL.split(',').map((url) => url.trim().replace(/\/+$/, ''))
+    : []),
+];
+
+// CORS Configuration for secure cross-origin cookies
 app.use(
   cors({
-    origin: CLIENT_URL,
+    origin: (origin, callback) => {
+      // Allow non-browser requests (e.g. mobile apps, curl, server-to-server webhooks, health checks)
+      if (!origin) return callback(null, true);
+
+      const normalizedOrigin = origin.trim().replace(/\/+$/, '');
+      if (
+        allowedOrigins.includes(normalizedOrigin) ||
+        normalizedOrigin.endsWith('.netlify.app') ||
+        normalizedOrigin.endsWith('.up.railway.app')
+      ) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-razorpay-signature', 'x-razorpay-event-id'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'x-razorpay-signature',
+      'x-razorpay-event-id',
+    ],
   })
 );
 

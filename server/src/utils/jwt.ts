@@ -36,7 +36,7 @@ export const setAuthCookie = (res: Response, token: string): void => {
   res.cookie(COOKIE_NAME, token, {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? 'strict' : 'lax',
+    sameSite: isProduction ? 'none' : 'lax', // 'none' allows cross-origin cookie delivery between Netlify & Railway
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
     path: '/',
   });
@@ -48,7 +48,7 @@ export const clearAuthCookie = (res: Response): void => {
   res.cookie(COOKIE_NAME, '', {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? 'strict' : 'lax',
+    sameSite: isProduction ? 'none' : 'lax',
     expires: new Date(0),
     path: '/',
   });
