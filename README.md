@@ -4,6 +4,14 @@
 
 RecoverAI is a full-stack, production-grade fintech SaaS platform that autonomously analyzes failed customer payments, predicts recovery likelihood with explainable machine learning heuristics, and executes automated recovery workflows to salvage dropped revenue.
 
+## 🌐 Live Demo
+
+**Live Application:** https://recoverai-revenue.netlify.app
+
+**Backend API:** https://recoverai-production-c6d5.up.railway.app
+
+> ⚠️ RecoverAI currently uses Razorpay TEST MODE. No real money is charged or transferred.
+
 ---
 
 ## 📌 Problem Statement
@@ -61,7 +69,12 @@ RecoverAI provides an **Autonomous Revenue Recovery Agent** that acts as an inte
    └───────────────────────────┘
 ```
 
-> **Note on Payment Simulation**: Payment execution is currently performed via the **`DemoPaymentProvider`** simulation architecture. **No real money is moved and no live bank accounts are debited.** Simulated workflows provide a realistic, deterministic environment for demonstrating autonomous recovery mechanics, recovery links, and financial metrics.
+> **Note on Payment Processing**: RecoverAI supports Razorpay TEST MODE
+> for payment order creation, checkout, signature verification, and
+> webhook processing. No real money is charged or transferred.
+>
+> RecoverAI also retains the `DemoPaymentProvider` for deterministic
+> simulation and autonomous recovery demonstrations.
 
 ---
 
@@ -107,10 +120,12 @@ RecoverAI provides an **Autonomous Revenue Recovery Agent** that acts as an inte
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, Lucide Icons, React Router 6 |
-| **Backend** | Node.js, Express, TypeScript, Zod, JWT (`jsonwebtoken`), bcryptjs, Cookie-Parser |
-| **Database** | MongoDB, Mongoose ODM (with compound indexing and multi-tenant scoping) |
-| **Testing** | Node test runner, TypeScript execution (`tsx` / `ts-node`), custom assertions |
+| Frontend | React 18, TypeScript, Vite, Tailwind CSS, Lucide Icons, React Router 6 |
+| Backend | Node.js, Express, TypeScript, Zod, JWT, bcryptjs, Cookie-Parser |
+| Database | MongoDB, Mongoose ODM |
+| Payments | Razorpay TEST MODE, HMAC-SHA256 verification, Webhooks |
+| Deployment | Netlify, Railway, MongoDB Atlas |
+| Testing | Node test runner, TypeScript execution, custom assertions |
 
 ---
 
@@ -141,7 +156,7 @@ RecoverAI/
 │   │   ├── routes/             # Express API routes (/auth, /transactions, /analytics, etc.)
 │   │   ├── scripts/            # Demo data seeder & local DB runner
 │   │   ├── services/           # Analytics aggregations & payment providers
-│   │   ├── tests/              # Phase 1-5 automated test suites & master QA audit
+│   │   ├── tests/              # Phase 1-6 automated test suites & master QA audit
 │   │   ├── utils/              # JWT helpers & formatting
 │   │   └── server.ts           # Express server setup & middleware
 │   ├── package.json
@@ -248,23 +263,20 @@ Open your browser and navigate to **`http://localhost:5173`**.
 
 ## 🧪 Testing & Automated Verification
 
-RecoverAI includes automated test suites covering all phases:
+RecoverAI includes automated test suites covering Phases 1–6,
+including Razorpay TEST MODE integration and live end-to-end verification.
 
-```bash
-# Run all Phase 1–5 test suites sequentially
-cd server
-npm run test:all
+All automated and live verification suites passed successfully.
 
-# Run individual test suites
-npm run test           # Phase 1: Authentication & Merchant foundation
-npm run test:phase2     # Phase 2: Customers, Transactions & Simulation
-npm run test:phase3     # Phase 3: AI Recovery Intelligence Engine
-npm run test:phase4     # Phase 4: Autonomous Recovery Agent
-npm run test:phase5     # Phase 5: Analytics, Trends & Customer Segments
+### Coverage
 
-# Run Master End-to-End QA Audit (51 assertions)
-npm run test:audit
-```
+- Phase 1: Authentication & Merchant Foundation
+- Phase 2: Customers & Transactions
+- Phase 3: AI Recovery Intelligence
+- Phase 4: Autonomous Recovery Agent
+- Phase 5: Analytics & AI Insights
+- Phase 6: Razorpay TEST MODE Payments
+- Master QA & End-to-End Verification
 
 ---
 
@@ -313,7 +325,7 @@ npm run test:audit
 
 ## 🗺️ Roadmap & Future Enhancements
 
-- **Live Gateway Integrations**: Live webhooks and sync for Razorpay, Stripe, and Cashfree.
+- **Additional Live Gateway Integrations**: Production integrations for Stripe and Cashfree, alongside production-grade Razorpay support.
 - **Multi-Channel Recovery Links**: Automated SMS and WhatsApp payment link dispatch via Twilio / Gupshup.
 - **Custom Autonomous Policies**: Merchant-configurable threshold rules (e.g. adjust minimum probability, max auto-salvage amounts).
 - **Multi-Currency Support**: Dynamic FX conversion and multi-currency reporting (USD, EUR, GBP, INR).
