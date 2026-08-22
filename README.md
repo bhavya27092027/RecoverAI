@@ -8,7 +8,7 @@ RecoverAI is a full-stack, production-grade fintech SaaS platform that autonomou
 
 **Live Application:** https://recoverai-revenue.netlify.app
 
-**🎥 5-Minute Product Demo:** https://drive.google.com/file/d/1u55pssNj7rbv7YgJI66clgfmoAUHQqNe/view?usp=sharing
+**Product Demo:** https://drive.google.com/file/d/1u55pssNj7rbv7YgJI66clgfmoAUHQqNe/view?usp=sharing
 
 **Backend API:** https://recoverai-production-c6d5.up.railway.app
 
