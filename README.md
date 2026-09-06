@@ -14,7 +14,7 @@ RecoverAI is a full-stack, production-grade fintech SaaS platform that autonomou
 
 **Product Demo:** https://drive.google.com/file/d/1u55pssNj7rbv7YgJI66clgfmoAUHQqNe/view?usp=sharing
 
-**Backend API:** [[https://recoverai-production-c6d5.up.railway.app](https://recoverai-backend-wjb1.onrender.com)]
+**Backend API:** [https://recoverai-backend-wjb1.onrender.com](https://recoverai-backend-wjb1.onrender.com)
 
 > ⚠️ RecoverAI currently uses Razorpay TEST MODE. No real money is charged or transferred.
 
