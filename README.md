@@ -1,57 +1,55 @@
-# RecoverAI
+RecoverAI
 
-[svg](https://github.com/bhavya27092027/RecoverAI#recoverai)
+svg
 
-**Autonomous AI Revenue Recovery Platform**
+Autonomous AI Revenue Recovery Platform
 
 RecoverAI is a full-stack, production-grade fintech SaaS platform that autonomously analyzes failed customer payments, predicts recovery likelihood with explainable machine learning heuristics, and executes automated recovery workflows to salvage dropped revenue.
 
-## 🌐 Live Demo
+🌐 Live Demo
 
-[svg](https://github.com/bhavya27092027/RecoverAI#-live-demo)
+svg
 
-**Live Application:** [https://recoverai-revenue.netlify.app](https://recoverai-revenue.netlify.app/)
+Live Application: https://recoverai-revenue.netlify.app
 
-**Product Demo:** https://drive.google.com/file/d/1u55pssNj7rbv7YgJI66clgfmoAUHQqNe/view?usp=sharing
+Product Demo: https://drive.google.com/file/d/1u55pssNj7rbv7YgJI66clgfmoAUHQqNe/view?usp=sharing
 
-**Backend API:** [https://recoverai-backend-wjb1.onrender.com](https://recoverai-backend-wjb1.onrender.com/)
+Backend API: https://recoverai-backend-wjb1.onrender.com
 
-> ⚠️ RecoverAI currently uses Razorpay TEST MODE. No real money is charged or transferred.
+⚠️ RecoverAI currently uses Razorpay TEST MODE. No real money is charged or transferred.
 
----
+📌 Problem Statement
 
-## 📌 Problem Statement
+svg
 
-[svg](https://github.com/bhavya27092027/RecoverAI#-problem-statement)
-
-In modern SaaS, e-commerce, and subscription businesses, **5%–15% of all digital transactions fail** due to temporary bank timeouts, card issuer rejections, insufficient balances, and customer checkout abandonment.
+In modern SaaS, e-commerce, and subscription businesses, 5%–15% of all digital transactions fail due to temporary bank timeouts, card issuer rejections, insufficient balances, and customer checkout abandonment.
 
 Traditional payment setups treat all failures identically:
 
-- **Blind instant retries** overwhelm banking gateways and result in high failure penalties.
-- **Manual customer support follow-ups** are slow, expensive, and fail to capture urgent recovery opportunities.
-- **Lack of failure intelligence** leaves businesses blind to rail-specific checkout friction and churn patterns.
+Blind instant retries overwhelm banking gateways and result in high failure penalties.
 
----
+Manual customer support follow-ups are slow, expensive, and fail to capture urgent recovery opportunities.
 
-## 💡 The RecoverAI Solution
+Lack of failure intelligence leaves businesses blind to rail-specific checkout friction and churn patterns.
 
-[svg](https://github.com/bhavya27092027/RecoverAI#-the-recoverai-solution)
+💡 The RecoverAI Solution
 
-RecoverAI provides an **Autonomous Revenue Recovery Agent** that acts as an intelligent layer between merchant payment gateways and customers:
+svg
 
-1. **Instant Failure Ingestion & Classification**: Captures failure events in real-time and categorizes drops across 6 distinct failure categories (`BANK_TIMEOUT`, `INSUFFICIENT_BALANCE`, `CARD_DECLINED`, `AUTHENTICATION_FAILURE`, `TRANSACTION_LIMIT`, `CUSTOMER_ABANDONMENT`).
-2. **Deterministic AI Recovery Intelligence**: Evaluates transaction context, customer lifetime spend, payment rail reliability, historical retry patterns, and merchant baseline scores to compute an explainable recovery probability (0%–100%) and expected recoverable revenue.
-3. **Autonomous Execution Policy**: Automatically executes simulated recovery strategies for high-probability, high-confidence candidates (`≥80% probability` with `HIGH confidence`), while routing ambiguous drops to human merchant oversight.
-4. **Comprehensive Real-Time Analytics**: Visualizes lifecycle recovery funnels, time-series revenue trends, payment rail efficiency, and customer behavioral segments computed directly from MongoDB database records.
+RecoverAI provides an Autonomous Revenue Recovery Agent that acts as an intelligent layer between merchant payment gateways and customers:
 
----
+Instant Failure Ingestion & Classification: Captures failure events in real-time and categorizes drops across 6 distinct failure categories (BANK_TIMEOUT, INSUFFICIENT_BALANCE, CARD_DECLINED, AUTHENTICATION_FAILURE, TRANSACTION_LIMIT, CUSTOMER_ABANDONMENT).
 
-## 🏗️ Architecture
+Deterministic AI Recovery Intelligence: Evaluates transaction context, customer lifetime spend, payment rail reliability, historical retry patterns, and merchant baseline scores to compute an explainable recovery probability (0%–100%) and expected recoverable revenue.
 
-[svg](https://github.com/bhavya27092027/RecoverAI#%EF%B8%8F-architecture)
+Autonomous Execution Policy: Automatically executes simulated recovery strategies for high-probability, high-confidence candidates (≥80% probability with HIGH confidence), while routing ambiguous drops to human merchant oversight.
 
-```
+Comprehensive Real-Time Analytics: Visualizes lifecycle recovery funnels, time-series revenue trends, payment rail efficiency, and customer behavioral segments computed directly from MongoDB database records.
+
+🏗️ Architecture
+
+svg
+
    ┌─────────────────────────────────────────────────────────┐
    │            React + TypeScript + Vite Frontend           │
    │  (Tailwind CSS, Lucide Icons, Dark Fintech Aesthetics)  │
@@ -81,91 +79,121 @@ RecoverAI provides an **Autonomous Revenue Recovery Agent** that acts as an inte
    │ (Simulated State Machine) │
    └───────────────────────────┘
 
-```
 
-**svg**
+svg
 
-> **Note on Payment Processing**: RecoverAI supports Razorpay TEST MODE for payment order creation, checkout, signature verification, and webhook processing. No real money is charged or transferred.
->
-> RecoverAI also retains the `DemoPaymentProvider` for deterministic simulation and autonomous recovery demonstrations.
+Note on Payment Processing: RecoverAI supports Razorpay TEST MODE for payment order creation, checkout, signature verification, and webhook processing. No real money is charged or transferred.
 
----
+RecoverAI also retains the DemoPaymentProvider for deterministic simulation and autonomous recovery demonstrations.
 
-## 🌟 Key Features
+🌟 Key Features
 
-[svg](https://github.com/bhavya27092027/RecoverAI#-key-features)
+svg
 
-### 1. AI Recovery Intelligence Engine
+1. AI Recovery Intelligence Engine
 
-[svg](https://github.com/bhavya27092027/RecoverAI#1-ai-recovery-intelligence-engine)
+svg
 
-- **Deterministic Multi-Factor Scoring**: Evaluates 5 weighted dimensions:
-  - *Failure Reason Elasticity* (35–80 pts)
-  - *Customer Payment History & LTV* (0–15 pts)
-  - *Payment Method Reliability* (0–5 pts)
-  - *Merchant Recovery Baseline* (0–5 pts)
-  - *Repeat Failure Penalty* (-15 to -30 pts)
-- **Confidence Tiers**: `HIGH`, `MEDIUM`, `LOW` based on verified customer transaction history.
-- **Optimal Strategy Selection**: Recommends `RETRY_NOW`, `WAIT_AND_RETRY`, `SEND_PAYMENT_LINK`, `SUGGEST_ALTERNATE_METHOD`, or `STOP_RECOVERY`.
-- **Explainable Reasoning**: Contextual human-readable explanations detailing *why* a strategy was chosen.
+Deterministic Multi-Factor Scoring: Evaluates 5 weighted dimensions:
 
-### 2. Autonomous Recovery Agent
+Failure Reason Elasticity (35–80 pts)
 
-[svg](https://github.com/bhavya27092027/RecoverAI#2-autonomous-recovery-agent)
+Customer Payment History & LTV (0–15 pts)
 
-- **Autonomous vs Approval Policy**: Candidates with `≥80% probability` and `HIGH confidence` are marked **Auto Ready** for zero-touch execution; other drops require merchant confirmation.
-- **Strict Idempotency**: Prevents double-recovery on already salvaged transactions.
-- **Audit Event Trail**: Immutable, chronological `RecoveryEvent` audit stream for full compliance and visibility.
-- **Multi-Step Execution Modal**: Interactive 5-step stepper guiding the operator through evaluation, rule matching, dispatch, simulation, and settlement.
+Payment Method Reliability (0–5 pts)
 
-### 3. Financial Analytics & Lifecycle Funnel (`/analytics`)
+Merchant Recovery Baseline (0–5 pts)
 
-[svg](https://github.com/bhavya27092027/RecoverAI#3-financial-analytics--lifecycle-funnel-analytics)
+Repeat Failure Penalty (-15 to -30 pts)
 
-- **Top KPI Cards**: Total Payment Volume, Successful Revenue, Revenue at Risk, Recovered Revenue, Recovery Rate, Recovery Success Rate, and Net Recovery Lift.
-- **6-Stage Lifecycle Funnel**: `Total Transactions` → `Failed Payments` → `AI Analyzed` → `Recovery Opportunities` → `Recovery Attempts` → `Recovered Revenue`.
-- **Interactive Revenue Trends**: Multi-series area chart tracking successful, failed, and recovered revenue over `7D`, `30D`, `90D`, and `All Time` date ranges.
-- **Rail & Failure Analysis**: Identifies dominant failure categories and highlights the "Best Performing Payment Rail".
-- **Customer Recovery Segments**: 4-quadrant matrix classifying accounts into *High/Low Value × High/Low Recovery Potential*.
+Confidence Tiers: HIGH, MEDIUM, LOW based on verified customer transaction history.
 
-### 4. Predictive AI Insights (`/ai-insights`)
+Optimal Strategy Selection: Recommends RETRY_NOW, WAIT_AND_RETRY, SEND_PAYMENT_LINK, SUGGEST_ALTERNATE_METHOD, or STOP_RECOVERY.
 
-[svg](https://github.com/bhavya27092027/RecoverAI#4-predictive-ai-insights-ai-insights)
+Explainable Reasoning: Contextual human-readable explanations detailing why a strategy was chosen.
 
-- Categorized by business impact (`Revenue Recoverable`, `Recovery Performance`, `Failure Patterns`, `Payment Rails`, `Customer Behavior`).
-- Statistical confidence badges (`High confidence`, `Medium confidence`, `Limited data`) with actionable recommendations.
+2. Autonomous Recovery Agent
 
-### 5. App Shell & Productivity Controls
+svg
 
-[svg](https://github.com/bhavya27092027/RecoverAI#5-app-shell--productivity-controls)
+Autonomous vs Approval Policy: Candidates with ≥80% probability and HIGH confidence are marked Auto Ready for zero-touch execution; other drops require merchant confirmation.
 
-- **Omnibar Global Search (****`Ctrl+K`****)**: Instant search across customers, transactions, and payment IDs scoped to the authenticated merchant.
-- **Notification Center**: Real-time event popover with unread counter and dynamic alerts.
-- **Simulation Mode Badge**: Visual status indicator in the header.
-- **Demo Dataset Seeder**: One-click demo scenario generator populating 6 realistic customers, 18 transactions over 30 days, AI recovery scores, and simulated recovery attempts.
+Strict Idempotency: Prevents double-recovery on already salvaged transactions.
 
----
+Audit Event Trail: Immutable, chronological RecoveryEvent audit stream for full compliance and visibility.
 
-## 🛠️ Tech Stack
+Multi-Step Execution Modal: Interactive 5-step stepper guiding the operator through evaluation, rule matching, dispatch, simulation, and settlement.
 
-[svg](https://github.com/bhavya27092027/RecoverAI#%EF%B8%8F-tech-stack)
+3. Financial Analytics & Lifecycle Funnel (/analytics)
 
-| **LayerTechnology** |                                                                        |
-| ------------------- | ---------------------------------------------------------------------- |
-| Frontend            | React 18, TypeScript, Vite, Tailwind CSS, Lucide Icons, React Router 6 |
-| Backend             | Node.js, Express, TypeScript, Zod, JWT, bcryptjs, Cookie-Parser        |
-| Database            | MongoDB, Mongoose ODM                                                  |
-| Payments            | Razorpay TEST MODE, HMAC-SHA256 verification, Webhooks                 |
-| Deployment          | Netlify, Render, MongoDB Atlas                                        |
-| Testing             | Node test runner, TypeScript execution, custom assertions              |
+svg
 
----
+Top KPI Cards: Total Payment Volume, Successful Revenue, Revenue at Risk, Recovered Revenue, Recovery Rate, Recovery Success Rate, and Net Recovery Lift.
 
-## 📂 Project Structure
+6-Stage Lifecycle Funnel: Total Transactions → Failed Payments → AI Analyzed → Recovery Opportunities → Recovery Attempts → Recovered Revenue.
 
-[svg](https://github.com/bhavya27092027/RecoverAI#-project-structure)
+Interactive Revenue Trends: Multi-series area chart tracking successful, failed, and recovered revenue over 7D, 30D, 90D, and All Time date ranges.
 
-```
+Rail & Failure Analysis: Identifies dominant failure categories and highlights the "Best Performing Payment Rail".
+
+Customer Recovery Segments: 4-quadrant matrix classifying accounts into High/Low Value × High/Low Recovery Potential.
+
+4. Predictive AI Insights (/ai-insights)
+
+svg
+
+Categorized by business impact (Revenue Recoverable, Recovery Performance, Failure Patterns, Payment Rails, Customer Behavior).
+
+Statistical confidence badges (High confidence, Medium confidence, Limited data) with actionable recommendations.
+
+5. App Shell & Productivity Controls
+
+svg
+
+Omnibar Global Search (Ctrl+K): Instant search across customers, transactions, and payment IDs scoped to the authenticated merchant.
+
+Notification Center: Real-time event popover with unread counter and dynamic alerts.
+
+Simulation Mode Badge: Visual status indicator in the header.
+
+Demo Dataset Seeder: One-click demo scenario generator populating 6 realistic customers, 18 transactions over 30 days, AI recovery scores, and simulated recovery attempts.
+
+🛠️ Tech Stack
+
+svg
+
+LayerTechnology
+
+
+
+Frontend
+
+React 18, TypeScript, Vite, Tailwind CSS, Lucide Icons, React Router 6
+
+Backend
+
+Node.js, Express, TypeScript, Zod, JWT, bcryptjs, Cookie-Parser
+
+Database
+
+MongoDB, Mongoose ODM
+
+Payments
+
+Razorpay TEST MODE, HMAC-SHA256 verification, Webhooks
+
+Deployment
+
+Netlify, Render, MongoDB Atlas
+
+Testing
+
+Node test runner, TypeScript execution, custom assertions
+
+📂 Project Structure
+
+svg
+
 RecoverAI/
 ├── client/                     # React + Vite Frontend Application
 │   ├── src/
@@ -201,69 +229,57 @@ RecoverAI/
 ├── package.json                # Root workspace scripts
 └── README.md                   # Project documentation
 
-```
 
-**svg**
+svg
 
----
+🚀 Getting Started
 
-## 🚀 Getting Started
+svg
 
-[svg](https://github.com/bhavya27092027/RecoverAI#-getting-started)
+Prerequisites
 
-### Prerequisites
+svg
 
-[svg](https://github.com/bhavya27092027/RecoverAI#prerequisites)
+Node.js: v18.0.0 or higher
 
-- **Node.js**: v18.0.0 or higher
-- **npm**: v9.0.0 or higher
-- **MongoDB**: Local MongoDB instance (`mongodb://localhost:27017`) OR MongoDB Atlas cloud connection URI.
+npm: v9.0.0 or higher
 
----
+MongoDB: Local MongoDB instance (mongodb://localhost:27017) OR MongoDB Atlas cloud connection URI.
 
-### 1. Clone & Install Dependencies
+1. Clone & Install Dependencies
 
-[svg](https://github.com/bhavya27092027/RecoverAI#1-clone--install-dependencies)
+svg
 
-```
 # Clone the repository
 git clone <YOUR_REPOSITORY_URL>
 cd RecoverAI
 
 # Install all workspace dependencies (root, client, and server)
 npm run install:all
-```
 
-**svg**
+svg
 
 Alternatively, install individually:
 
-```
 npm install
 cd server && npm install
 cd ../client && npm install
 cd ..
-```
 
-**svg**
+svg
 
----
+2. Configure Environment Variables
 
-### 2. Configure Environment Variables
+svg
 
-[svg](https://github.com/bhavya27092027/RecoverAI#2-configure-environment-variables)
+Create .env in the server directory (or use .env in the root workspace):
 
-Create `.env` in the `server` directory (or use `.env` in the root workspace):
-
-```
 cp server/.env.example server/.env
-```
 
-**svg**
+svg
 
-**`server/.env`** **configuration**:
+server/.env configuration:
 
-```
 PORT=5000
 NODE_ENV=development
 CLIENT_URL=http://localhost:5173
@@ -273,146 +289,323 @@ MONGODB_URI=mongodb://localhost:27017/recoverai
 
 # Security & Session Secrets
 JWT_SECRET=replace_with_a_secure_random_jwt_secret_key_32_characters_minimum
-```
 
-**svg**
+svg
 
----
+3. Start MongoDB Database
 
-### 3. Start MongoDB Database
-
-[svg](https://github.com/bhavya27092027/RecoverAI#3-start-mongodb-database)
+svg
 
 Ensure your local MongoDB daemon is running, or start the integrated local runner:
 
-```
 npm run db:local
-```
 
-**svg**
+svg
 
----
+4. Run the Full-Stack Application
 
-### 4. Run the Full-Stack Application
-
-[svg](https://github.com/bhavya27092027/RecoverAI#4-run-the-full-stack-application)
+svg
 
 You can start both backend and frontend concurrently from the root directory:
 
-```
 npm run dev
-```
 
-**svg**
+svg
 
 Or start each service in separate terminals:
 
-**Terminal 1 (Backend Server)**:
+Terminal 1 (Backend Server):
 
-```
 cd server
 npm run dev
 # Server running at http://localhost:5000
-```
 
-**svg**
+svg
 
-**Terminal 2 (Frontend Client)**:
+Terminal 2 (Frontend Client):
 
-```
 cd client
 npm run dev
 # Frontend running at http://localhost:5173
-```
 
-**svg**
+svg
 
-Open your browser and navigate to **`http://localhost:5173`**.
+Open your browser and navigate to http://localhost:5173.
 
----
+🧪 Testing & Automated Verification
 
-## 🧪 Testing & Automated Verification
-
-[svg](https://github.com/bhavya27092027/RecoverAI#-testing--automated-verification)
+svg
 
 RecoverAI includes automated test suites covering Phases 1–6, including Razorpay TEST MODE integration and live end-to-end verification.
 
 All automated and live verification suites passed successfully.
 
-### Coverage
+Coverage
 
-[svg](https://github.com/bhavya27092027/RecoverAI#coverage)
+svg
 
-- Phase 1: Authentication & Merchant Foundation
-- Phase 2: Customers & Transactions
-- Phase 3: AI Recovery Intelligence
-- Phase 4: Autonomous Recovery Agent
-- Phase 5: Analytics & AI Insights
-- Phase 6: Razorpay TEST MODE Payments
-- Master QA & End-to-End Verification
+Phase 1: Authentication & Merchant Foundation
 
----
+Phase 2: Customers & Transactions
 
-## 📡 API Overview
+Phase 3: AI Recovery Intelligence
 
-[svg](https://github.com/bhavya27092027/RecoverAI#-api-overview)
+Phase 4: Autonomous Recovery Agent
 
-| **GroupMethodEndpointDescription** |        |                                    |                                                     |
-| ---------------------------------- | ------ | ---------------------------------- | --------------------------------------------------- |
-| **Auth**                           | `POST` | `/api/auth/signup`                 | Register user & auto-create merchant                |
-| **Auth**                           | `POST` | `/api/auth/login`                  | Authenticate & issue HTTP-only cookie               |
-| **Auth**                           | `POST` | `/api/auth/logout`                 | Clear authentication cookie                         |
-| **Auth**                           | `GET`  | `/api/auth/me`                     | Hydrate active user & merchant session              |
-| **Merchant**                       | `POST` | `/api/merchant/onboarding`         | Complete 5-step onboarding wizard                   |
-| **Merchant**                       | `GET`  | `/api/merchant/profile`            | Get merchant details & enabled rails                |
-| **Customers**                      | `GET`  | `/api/customers`                   | List merchant customers with stats                  |
-| **Customers**                      | `POST` | `/api/customers`                   | Create a customer record                            |
-| **Customers**                      | `GET`  | `/api/customers/:id`               | Get customer profile & recovery history             |
-| **Transactions**                   | `GET`  | `/api/transactions`                | Paginated, filterable, sortable transactions        |
-| **Transactions**                   | `POST` | `/api/transactions`                | Create a new transaction                            |
-| **Transactions**                   | `POST` | `/api/transactions/:id/process`    | Simulate payment outcome (`SUCCESS`/`FAILED`)       |
-| **Transactions**                   | `POST` | `/api/transactions/:id/analyze`    | Run AI Recovery Intelligence analysis               |
-| **Recovery**                       | `GET`  | `/api/recovery/opportunities`      | Priority Queue of salvage opportunities             |
-| **Recovery**                       | `POST` | `/api/recovery/:id/execute`        | Execute recovery strategy (Autonomous/Manual)       |
-| **Recovery**                       | `GET`  | `/api/recovery/:id`                | Detailed recovery analysis & event stream           |
-| **Analytics**                      | `GET`  | `/api/analytics/overview`          | High-level financial KPIs & recovery lift           |
-| **Analytics**                      | `GET`  | `/api/analytics/funnel`            | 6-stage lifecycle recovery funnel                   |
-| **Analytics**                      | `GET`  | `/api/analytics/revenue-trends`    | Time-series revenue trends (`7D`/`30D`/`90D`/`ALL`) |
-| **Analytics**                      | `GET`  | `/api/analytics/failure-breakdown` | Category loss breakdown & salvage rates             |
-| **Analytics**                      | `GET`  | `/api/analytics/payment-methods`   | Rail efficiency & best payment method               |
-| **Analytics**                      | `GET`  | `/api/analytics/customer-segments` | 4-quadrant customer behavioral matrix               |
-| **Analytics**                      | `GET`  | `/api/analytics/insights`          | Prioritized AI financial recommendations            |
-| **Notifications**                  | `GET`  | `/api/notifications`               | Live event alerts & unread counter                  |
-| **Search**                         | `GET`  | `/api/search?q=...`                | Omnibar search across customers and txs             |
-| **Demo**                           | `POST` | `/api/demo/seed`                   | Populate realistic demo dataset in MongoDB          |
+Phase 5: Analytics & AI Insights
 
----
+Phase 6: Razorpay TEST MODE Payments
 
-## 🔒 Security Practices
+Master QA & End-to-End Verification
 
-[svg](https://github.com/bhavya27092027/RecoverAI#-security-practices)
+📡 API Overview
 
-- **Strict Multi-Tenancy**: Every database query filters by `merchantId` extracted from verified JWT claims.
-- **Secure Authentication**: JWTs are stored in `HttpOnly`, `SameSite=Lax`, cryptographically signed cookies; passwords hashed with `bcryptjs` (salt rounds: 10).
-- **Zero Mock Metrics**: All dashboard KPIs, funnel stages, and trend lines are computed directly from real MongoDB collections.
-- **Input Validation**: All API request payloads are validated via strict `Zod` schemas before hitting controllers.
-- **Security Headers**: Standard security headers enforced via `helmet`.
+svg
 
----
+GroupMethodEndpointDescription
 
-## 🗺️ Roadmap & Future Enhancements
 
-[svg](https://github.com/bhavya27092027/RecoverAI#%EF%B8%8F-roadmap--future-enhancements)
 
-- **Additional Live Gateway Integrations**: Production integrations for Stripe and Cashfree, alongside production-grade Razorpay support.
-- **Multi-Channel Recovery Links**: Automated SMS and WhatsApp payment link dispatch via Twilio / Gupshup.
-- **Custom Autonomous Policies**: Merchant-configurable threshold rules (e.g. adjust minimum probability, max auto-salvage amounts).
-- **Multi-Currency Support**: Dynamic FX conversion and multi-currency reporting (USD, EUR, GBP, INR).
 
----
 
-## 📄 License
 
-[svg](https://github.com/bhavya27092027/RecoverAI#-license)
 
-This project is licensed under the **MIT License**.
+Auth
+
+POST
+
+/api/auth/signup
+
+Register user & auto-create merchant
+
+Auth
+
+POST
+
+/api/auth/login
+
+Authenticate & issue HTTP-only cookie
+
+Auth
+
+POST
+
+/api/auth/logout
+
+Clear authentication cookie
+
+Auth
+
+GET
+
+/api/auth/me
+
+Hydrate active user & merchant session
+
+Merchant
+
+POST
+
+/api/merchant/onboarding
+
+Complete 5-step onboarding wizard
+
+Merchant
+
+GET
+
+/api/merchant/profile
+
+Get merchant details & enabled rails
+
+Customers
+
+GET
+
+/api/customers
+
+List merchant customers with stats
+
+Customers
+
+POST
+
+/api/customers
+
+Create a customer record
+
+Customers
+
+GET
+
+/api/customers/:id
+
+Get customer profile & recovery history
+
+Transactions
+
+GET
+
+/api/transactions
+
+Paginated, filterable, sortable transactions
+
+Transactions
+
+POST
+
+/api/transactions
+
+Create a new transaction
+
+Transactions
+
+POST
+
+/api/transactions/:id/process
+
+Simulate payment outcome (SUCCESS/FAILED)
+
+Transactions
+
+POST
+
+/api/transactions/:id/analyze
+
+Run AI Recovery Intelligence analysis
+
+Recovery
+
+GET
+
+/api/recovery/opportunities
+
+Priority Queue of salvage opportunities
+
+Recovery
+
+POST
+
+/api/recovery/:id/execute
+
+Execute recovery strategy (Autonomous/Manual)
+
+Recovery
+
+GET
+
+/api/recovery/:id
+
+Detailed recovery analysis & event stream
+
+Analytics
+
+GET
+
+/api/analytics/overview
+
+High-level financial KPIs & recovery lift
+
+Analytics
+
+GET
+
+/api/analytics/funnel
+
+6-stage lifecycle recovery funnel
+
+Analytics
+
+GET
+
+/api/analytics/revenue-trends
+
+Time-series revenue trends (7D/30D/90D/ALL)
+
+Analytics
+
+GET
+
+/api/analytics/failure-breakdown
+
+Category loss breakdown & salvage rates
+
+Analytics
+
+GET
+
+/api/analytics/payment-methods
+
+Rail efficiency & best payment method
+
+Analytics
+
+GET
+
+/api/analytics/customer-segments
+
+4-quadrant customer behavioral matrix
+
+Analytics
+
+GET
+
+/api/analytics/insights
+
+Prioritized AI financial recommendations
+
+Notifications
+
+GET
+
+/api/notifications
+
+Live event alerts & unread counter
+
+Search
+
+GET
+
+/api/search?q=...
+
+Omnibar search across customers and txs
+
+Demo
+
+POST
+
+/api/demo/seed
+
+Populate realistic demo dataset in MongoDB
+
+🔒 Security Practices
+
+svg
+
+Strict Multi-Tenancy: Every database query filters by merchantId extracted from verified JWT claims.
+
+Secure Authentication: JWTs are stored in HttpOnly, SameSite=Lax, cryptographically signed cookies; passwords hashed with bcryptjs (salt rounds: 10).
+
+Zero Mock Metrics: All dashboard KPIs, funnel stages, and trend lines are computed directly from real MongoDB collections.
+
+Input Validation: All API request payloads are validated via strict Zod schemas before hitting controllers.
+
+Security Headers: Standard security headers enforced via helmet.
+
+🗺️ Roadmap & Future Enhancements
+
+svg
+
+Additional Live Gateway Integrations: Production integrations for Stripe and Cashfree, alongside production-grade Razorpay support.
+
+Multi-Channel Recovery Links: Automated SMS and WhatsApp payment link dispatch via Twilio / Gupshup.
+
+Custom Autonomous Policies: Merchant-configurable threshold rules (e.g. adjust minimum probability, max auto-salvage amounts).
+
+Multi-Currency Support: Dynamic FX conversion and multi-currency reporting (USD, EUR, GBP, INR).
+
+📄 License
+
+svg
+
+This project is licensed under the MIT License.
